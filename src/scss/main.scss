@@ -177,39 +177,43 @@ body {
   grid-area: six;
   text-align: center;
 }
-@media screen and (min-width: 33em) {
+@media screen and (min-width: 528px) {
   .grid-container {
     grid-template-areas:
       "one one"
       "two three"
       "five five"
-      "four four";
+      "four four"
+      "six six";
   }
 }
 
-@media screen and (min-width: 38em) {
+@media screen and (min-width: 608px) {
   .grid-container {
     grid-template-areas:
       "one one"
       "two five"
       "three five"
-      "four four";
+      "four four"
+      "six six";
   }
 }
 
-@media screen and (min-width: 54em) {
+@media screen and (min-width: 864em) {
   .grid-container {
     grid-template-areas:
       "one one two"
       "five five five"
-      "three four four";
+      "three four four"
+      "six six six";
   }
 }
 
-@media screen and (min-width: 75em) {
+@media screen and (min-width: 1000px) {
   .grid-container {
     grid-template-areas:
       "one one two five"
-      "three four four five";
+      "three four four five"
+      "six six six six";
   }
 }
