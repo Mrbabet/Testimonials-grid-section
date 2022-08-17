@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600&display=swap);
+/* Box sizing rules */
 *,
 *::before,
 *::after {
@@ -11,34 +11,43 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6,
-p {
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
 }
 
-html,
-body {
-  overflow-x: hidden;
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
 }
 
-html {
+/* Set core root defaults */
+html:focus-within {
   scroll-behavior: smooth;
 }
 
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  font-family: sans-serif;
-  font-size: 100%;
-  line-height: 1.5;
   text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
-img {
-  display: block;
+img,
+picture {
   max-width: 100%;
+  display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -49,8 +58,11 @@ select {
   font: inherit;
 }
 
-/* Remove all animations and transitions for people that prefer not to see them */
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
   *,
 *::before,
 *::after {
@@ -61,113 +73,130 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  html {
-    scroll-behavior: initial;
-  }
 }
-* {
-  box-sizing: border-box;
-}
-
 body {
+  display: grid;
+  place-content: center;
   font-family: "Barlow Semi Condensed", sans-serif;
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: column;
+.grid-container {
+  display: grid;
   gap: 1.5rem;
-  margin: 40px;
+  grid-auto-columns: 1fr;
+  grid-template-areas: "one" "two" "three" "four" "five" "six";
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  margin-inline: auto;
 }
 
-article {
-  color: #fff;
+.flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.article {
+  box-shadow: 0 0 10px 1px;
   border-radius: 10px;
   padding: 2rem;
-  box-shadow: 0 0 5px 1px;
-  overflow: hidden;
 }
-article .heading {
+.article img {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  margin-right: 1rem;
+}
+.article h1 {
   font-size: 13px;
   line-height: 13px;
   font-weight: 600;
 }
-article .status {
+.article span {
   font-size: 11px;
   line-height: 11px;
   font-weight: 600;
   opacity: 0.5;
 }
-article .p-bold {
+.article p {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
-article .quote {
+.article q {
   font-size: 13px;
   line-height: 13px;
   font-weight: 600;
   opacity: 0.7;
 }
-article img {
-  border-radius: 50%;
-  margin-right: 1rem;
-  width: 28px;
-  height: 28px;
+
+.article:nth-child(1) {
+  grid-area: one;
+  background-color: hsl(263deg, 55%, 52%);
+  background-image: url(/images/bg-pattern-quotation.svg);
+  background-repeat: no-repeat;
+  background-position: top right 10%;
 }
-article .flex {
-  align-items: center;
+.article:nth-child(1) h1,
+.article:nth-child(1) p,
+.article:nth-child(1) span {
+  color: white;
+}
+.article:nth-child(1) q {
+  color: #cfcfcf;
 }
 
-.article-1 {
-  background-color: #733FC8;
-}
-.article-1 .quote {
-  color: #CFCFCF;
-}
-
-.article-2 {
-  background-color: #48556A;
+.article:nth-child(2) {
+  color: white;
+  grid-area: two;
+  background-color: hsl(217deg, 19%, 35%);
 }
 
-.article-3 {
-  background-color: #fff;
-  color: #48556A;
+.article:nth-child(3) {
+  grid-area: three;
+  background-color: hsl(0deg, 0%, 100%);
+}
+.article:nth-child(3) .p-bold {
+  color: #48556a;
 }
 
-.article-4 {
-  background-color: #19202D;
+.article:nth-child(4) {
+  grid-area: four;
+  background-color: hsl(219deg, 29%, 14%);
+  color: white;
 }
-.article-4 .p-bold {
-  color: #ECF2F8;
-}
-
-.article-5 {
-  background-color: #fff;
-  color: #48556A;
+.article:nth-child(4) .p-bold {
+  color: #ecf2f8;
 }
 
-.flex {
-  display: flex;
+.article:nth-child(5) {
+  grid-area: five;
+  background-color: hsl(0deg, 0%, 100%);
+  color: #48556a;
 }
 
-@media screen and (min-width: 900px) {
+.article:nth-child(6) {
+  grid-area: six;
+  text-align: center;
+}
+
+@media screen and (min-width: 33em) {
   .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 1.5rem;
-    row-gap: 24px;
-    -moz-column-gap: 30px;
-         column-gap: 30px;
-    max-width: 1100px;
-    min-height: 100vh;
-    margin: 40px;
+    grid-template-areas: "one one" "two three" "five five" "four four";
   }
-  .article-1, .article-4 {
-    grid-column: span 2;
+}
+@media screen and (min-width: 38em) {
+  .grid-container {
+    grid-template-areas: "one one" "two five" "three five" "four four";
   }
-  .article-5 {
-    grid-row: 1/3;
-    grid-column: 4/5;
+}
+@media screen and (min-width: 54em) {
+  .grid-container {
+    grid-template-areas: "one one two" "five five five" "three four four";
+  }
+}
+@media screen and (min-width: 75em) {
+  .grid-container {
+    grid-template-areas: "one one two five" "three four four five";
   }
 }/*# sourceMappingURL=main.css.map */
